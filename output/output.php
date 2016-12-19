@@ -1,8 +1,20 @@
 <?php
 
-$nim = $_GET['nim'];
-$nama = $_GET['nama'];
+$nim = $_POST['nim'];
+$nama = $_POST['nama'];
 $noUjian = rand(10000000000,99999999999);
+$classOfExam = $_POST['classOfExam'];
+$lectureOfExam = $_POST['lectureOfExam'];
+$dateOfExam  = date('l, d F Y', strtotime($_POST['dateOfExam'];));
+
+$timeOfExam = $_POST['timeOfExam'];
+$areaOfExam = $_POST['areaOfExam'];
+$periodOfExam = $_POST['periodOfExam'];
+
+
+
+$odd = array(1,3,5,6,7,9);
+$even = array(2,4,6,8);
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -21,7 +33,7 @@ $noUjian = rand(10000000000,99999999999);
 	<link rel="stylesheet" type="text/css" href="../css/main.css">
 	<link rel="stylesheet" type="text/css" href="../css/form.css">
 
-	<title>myUNPAM - Modul2</title>
+	<title>myUNPAM - <?php echo $modulOfExam; ?></title>
 <style type="text/css">
 :root #content > #right > .dose > .dosesingle,
 :root #content > #center > .dose > .dosesingle,
@@ -110,27 +122,21 @@ reformal_wdg_bimage = "8489db229aa0a66ab6b80ebbe0bb26cd.png";
 <th style="text-align:center">PARAF</th>
 </tr>
 </thead><tbody>
-<tr class="odd">
-<td width="5%" style="text-align:center">1</td>
-  <td style="text-align:center	;">SABTU, 17 December 2016</td>
-  <td style="text-align:center	;">08.00 - 11.00</td>
-  <td style="text-align:center	;">V.305</td>
-  <td style="text-align:center	;">04TPLEA</td>
-  <td style="text-align:center	;">PENDIDIKAN KEWARGANEGARAAN</td>
+<?php for($table = 0;$table < $maxTable;$table++){
+?>
+<tr class="<?php if($table != $even) { echo 'odd'; } else {echo 'even';} ?>">
+<td width="5%" style="text-align:center"><?php echo $table; ?></td> 
+  <td style="text-align:center	;"><?php echo $dateOfExam; ?></td>
+  <td style="text-align:center	;"><?php echo $timeOfExam[$table]; ?></td>
+  <td style="text-align:center	;"><?php echo $areaOfExam; ?></td>
+  <td style="text-align:center	;"><?php echo $classOfExam; ?></td>
+  <td style="text-align:center	;"><?php echo $lectureOfExam[$table]; ?></td>
   <td style="text-align:center	;"><?php echo $noUjian; ?></td>
-  <td style="text-align:center	;">2</td>
+  <td style="text-align:center	;"><?php echo $periodOfExam; ?></td>
   <td style="text-align:left;"></td>
-</tr><tr class="even">
-<td width="5%" style="text-align:center">2</td>
-  <td style="text-align:center	;">SABTU, 17 December 2016</td>
-  <td style="text-align:center	;">11.00 - 15.00</td>
-  <td style="text-align:center	;">V.305</td>
-  <td style="text-align:center	;">04TPLEA</td>
-  <td style="text-align:center	;">BASIS DATA I</td>
-  <td style="text-align:center	;"><?php echo $noUjian; ?></td>
-  <td style="text-align:center	;">2</td>
-  <td style="text-align:left;"></td>
-</tr></tbody>
+</tr>
+<?php } ?>
+</tbody>
 </table><div style="height:0px; width:0px;"></div></div> 
 <p align="right" font="" face="arial">Pamulang, 17 Januari 2016&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <img src="http://chart.apis.google.com/chart?cht=qr&chs=200x150&chl=UNPAM20132UAS" style="float:left; width=&#39;10%&#39; height=&#39;10%&#39;">
