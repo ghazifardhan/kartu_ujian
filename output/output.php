@@ -5,13 +5,21 @@ $nama = $_POST['nama'];
 $noUjian = rand(10000000000,99999999999);
 $classOfExam = $_POST['classOfExam'];
 $lectureOfExam = $_POST['lectureOfExam'];
-$dateOfExam  = date('l, d F Y', strtotime($_POST['dateOfExam'];));
+$dateOfExam  = date('l, d F Y', strtotime($_POST['dateOfExam']));
 
 $timeOfExam = $_POST['timeOfExam'];
 $areaOfExam = $_POST['areaOfExam'];
 $periodOfExam = $_POST['periodOfExam'];
 
-
+$dayList = array(
+		'Sunday' => 'Minggu',
+		'Monday' => 'Senin',
+		'Tuesday' => 'Selesa',
+		'Wednesday' => 'Rabu',
+		'Thursday' => 'Kamis',
+		'Friday' => "Jum'at",
+		'Saturday' => 'Sabtu'
+	);
 
 $odd = array(1,3,5,6,7,9);
 $even = array(2,4,6,8);
@@ -87,9 +95,11 @@ reformal_wdg_bimage = "8489db229aa0a66ab6b80ebbe0bb26cd.png";
 </style>
 <!--
 <div id="logo-print"><img src="http://my.unpam.ac.id/images/unnamed.jpg" width="80" height="80" style="position:relative;float:left;"><div style="position:relative;padding-left:120px;padding-top:0px;"><h3>UNIVERSITAS PAMULANG</h3></div></div>
-<input type="button" value="CETAK" onclick="javascript:window.print();" id="btncetak">
 -->
-
+<input type="button" value="CETAK" onclick="javascript:window.print();" id="btncetak">
+<br/>
+<br/>
+<br/>
 <div id="khs_content" style="display:all;">
 <div style="text-align:justify;"><img src="http://my.unpam.ac.id/images/unnamed.jpg" style="float:left; margin:0 9px 3px 0;" width="120px" ;="" height="120px"></div>
 <center><font size="1px">YAYASAN SASMITA JAYA</font></center>
@@ -106,7 +116,7 @@ reformal_wdg_bimage = "8489db229aa0a66ab6b80ebbe0bb26cd.png";
 	</tr>
 	<tr>
 		<td style="width:900px;"><font size="3px">NAMA &nbsp;: <?php echo $nama; ?></font></td>
-		<td style="width:900px;"><font size="3px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    SHIFT/KELAS&nbsp;&nbsp;: REGULER C/04SMJEA</font></td>
+		<td style="width:900px;"><font size="3px">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    SHIFT/KELAS&nbsp;&nbsp;: REGULER C/<?php echo $classOfExam; ?></font></td>
 	</tr> 
 		</tbody></table>
 	<div style="clear:both;"><table class="rounded" rowspan="6" width="50%" height="220%" style="width:900px;height:350px;align:center;" border="1">
@@ -122,10 +132,10 @@ reformal_wdg_bimage = "8489db229aa0a66ab6b80ebbe0bb26cd.png";
 <th style="text-align:center">PARAF</th>
 </tr>
 </thead><tbody>
-<?php for($table = 0;$table < $maxTable;$table++){
+<?php for($table = 0;$table < 2;$table++){
 ?>
-<tr class="<?php if($table != $even) { echo 'odd'; } else {echo 'even';} ?>">
-<td width="5%" style="text-align:center"><?php echo $table; ?></td> 
+<tr class="<?php if($table == $odd[$table]) { echo 'odd'; } else {echo 'even';} ?>">
+<td width="5%" style="text-align:center"><?php echo $table+1; ?></td> 
   <td style="text-align:center	;"><?php echo $dateOfExam; ?></td>
   <td style="text-align:center	;"><?php echo $timeOfExam[$table]; ?></td>
   <td style="text-align:center	;"><?php echo $areaOfExam; ?></td>
